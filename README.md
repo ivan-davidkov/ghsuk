@@ -1,5 +1,5 @@
 # ghsuk
-This bash script will download user(s) public ssh key from GitHub and add them to `~/.ssh/authorized_keys` of the user executed the script.
+Bash script to provision SSH `~/.ssh/authorized_keys` file of a OS user from GitHub. 
 
 ## background
 > When working in big organization as sysadmin or devop you many have to manage access to servers for developers. These days SSH access to an application servers is kind of a standard. Moreover if you don't want to maintain passwords with a complicated rotation and complexity policy, well public / private ssh keys are the best you can get. _Sadly no every application can use ssh key pairs._
