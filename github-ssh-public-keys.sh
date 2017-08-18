@@ -74,7 +74,8 @@ num_pages=2
 # !WARNING! you run this script github account(s) will have access on this Server
 # !WARNING! you run this script github account(s) will have access on this Server
 # !WARNING! you run this script github account(s) will have access on this Server
-for p in `seq 1 ${num_pages}`; do curl -s -u "${github_user}:${github_pass}" "https://api.github.com/orgs/${github_org}/members?page=$p&per_page=100" | jq -r '.[] | "\(.url) Login:\(.login)_ID:\(.id)"' | while read url comment; do echo -en "#- `curl -s -u "${github_user}:${github_pass}"  "${url//}" | jq '"Name:\(.name) - Login:\(.login) - ID:\(.id) - Email:\(.email) - Blog:\(.blog)"'` $comment -#\n`curl -s -u "${github_user}:${github_pass}"  "$url/keys"| jq -r .[0].key`" >> ${HOME}/.ssh/authorized_keys && echo -e " $comment \n" >> ${HOME}/.ssh/authorized_keys ; done ; done
+for p in `seq 1 ${num_pages}`; do curl -s -u "${github_user}:${github_pass}" "https://api.github.com/orgs/${github_org}/members?page=$p&per_page=100" | jq -r '.[] | "\(.url) Login:\(.login)_ID:\(.id)"' | while read url comment; do echo -en "# `curl -s -u "${github_user}:${github_pass}" "${url//}" | jq '"Name:\(.name) - Login:\(.login) - ID:\(.id) - Email:\(.email) - Blog:\(.blog)"'` -- \"Repositories list | `echo -n $(curl -s -u "${github_user}:${github_pass}" "$url/repos" | jq -r '.[] | "\(.name)"')` \"#\n`curl -s -u "${github_user}:${github_pass}"  "$url/keys"| jq -r .[].key`" >> ${HOME}/.ssh/authorized_keys && echo -e " $comment \n" >> ${HOME}/.ssh/authorized_keys ; done ; done
+
 
 #e.g. of a line in my .ssh/authorized_keys
 ##########################################################
